@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Renoise-Demo
+Comment=Cross-platform Digital Audio Workstation with a unique top-down approach to music composition known as a tracker interface.
+Exec=AppRun %U
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=icon
+Categories=Audio;
+StartupWMClass=renoise-demo
+StartupNotify=true

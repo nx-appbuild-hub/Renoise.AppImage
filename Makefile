@@ -11,7 +11,7 @@ all:
 	rm -rf AppDir/opt
 	
 	mkdir --parents AppDir/opt/application
-	cp -r Renoise_3_2_1_Demo_Linux/* AppDir/opt/application
+	cp -r Renoise_3_2_2_Demo_Linux/* AppDir/opt/application
 	rm -rf AppDir/opt/application/Installer
 	rm -rf AppDir/opt/application/install.sh	
 	rm -rf AppDir/opt/application/uninstall.sh	

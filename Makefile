@@ -1,4 +1,4 @@
-SOURCE="https://files.renoise.com/demo/Renoise_3_2_1_Demo_Linux.tar.gz"
+SOURCE="https://files.renoise.com/demo/Renoise_3_2_2_Demo_Linux.tar.gz"
 DESTINATION="build.tar.gz"
 OUTPUT="Renoise-Demo.AppImage"
 

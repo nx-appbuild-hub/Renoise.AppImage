@@ -1,25 +1,40 @@
-SOURCE="https://files.renoise.com/demo/Renoise_3_2_2_Demo_Linux.tar.gz"
-DESTINATION="build.tar.gz"
-OUTPUT="Renoise-Demo.AppImage"
+# Copyright 2020 Alex Woroschilow (alex.woroschilow@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+PWD:=$(shell pwd)
 
 
 all:
-	echo "Building: $(OUTPUT)"
-	wget -O $(DESTINATION) -c $(SOURCE)
+	mkdir --parents $(PWD)/build/Boilerplate.AppDir
+	wget --output-document=$(PWD)/build/build.tar.gz https://files.renoise.com/demo/Renoise_3_2_4_Demo_Linux.tar.gz
 	
-	tar -zxvf $(DESTINATION)
-	rm -rf AppDir/opt
-	
-	mkdir --parents AppDir/opt/application
-	cp -r Renoise_3_2_2_Demo_Linux/* AppDir/opt/application
-	rm -rf AppDir/opt/application/Installer
-	rm -rf AppDir/opt/application/install.sh	
-	rm -rf AppDir/opt/application/uninstall.sh	
-	rm -rf AppDir/opt/application/*.desktop
-	rm -rf AppDir/opt/application/*.pdf
+	tar -zxvf $(PWD)/build/build.tar.gz -C $(PWD)/build
 
-	export ARCH=x86_64 && bin/appimagetool.AppImage AppDir $(OUTPUT)
+	cp -r $(PWD)/build/Renoise_*_Demo_Linux/* $(PWD)/build/Boilerplate.AppDir
+	rm -rf $(PWD)/build/Boilerplate.AppDir/Installer
+	rm -rf $(PWD)/build/Boilerplate.AppDir/install.sh	
+	rm -rf $(PWD)/build/Boilerplate.AppDir/uninstall.sh	
+	rm -rf $(PWD)/build/Boilerplate.AppDir/*.desktop
+	rm -rf $(PWD)/build/Boilerplate.AppDir/*.pdf
 
-	rm -f $(DESTINATION)
-	rm -rf Renoise_3_2_1_Demo_Linux
-	rm -rf AppDir/opt
+	cp $(PWD)/AppDir/*.svg 		$(PWD)/build/Boilerplate.AppDir		| true
+	cp $(PWD)/AppDir/*.png 		$(PWD)/build/Boilerplate.AppDir		| true
+	cp $(PWD)/AppDir/*.xpm 		$(PWD)/build/Boilerplate.AppDir		| true	
+	cp $(PWD)/AppDir/*.desktop 	$(PWD)/build/Boilerplate.AppDir
+	cp $(PWD)/AppDir/AppRun 	$(PWD)/build/Boilerplate.AppDir
+
+	chmod +x $(PWD)/build/Boilerplate.AppDir/AppRun
+	chmod +x $(PWD)/build/Boilerplate.AppDir/renoise
+
+	export ARCH=x86_64 && bin/appimagetool.AppImage $(PWD)/build/Boilerplate.AppDir $(PWD)/Renoise-Demo.AppImage
+
+clean:
+	rm -rf $(PWD)/build

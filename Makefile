@@ -18,18 +18,18 @@ all:
 	
 	tar -zxvf $(PWD)/build/build.tar.gz -C $(PWD)/build
 
-	cp -r $(PWD)/build/Renoise_*_Demo_Linux/* $(PWD)/build/Boilerplate.AppDir
-	rm -rf $(PWD)/build/Boilerplate.AppDir/Installer
-	rm -rf $(PWD)/build/Boilerplate.AppDir/install.sh	
-	rm -rf $(PWD)/build/Boilerplate.AppDir/uninstall.sh	
-	rm -rf $(PWD)/build/Boilerplate.AppDir/*.desktop
-	rm -rf $(PWD)/build/Boilerplate.AppDir/*.pdf
+	cp --recursive --force $(PWD)/build/Renoise_*_Demo_Linux/* $(PWD)/build/Boilerplate.AppDir
+	rm --recursive --force $(PWD)/build/Boilerplate.AppDir/Installer
+	rm --recursive --force $(PWD)/build/Boilerplate.AppDir/install.sh	
+	rm --recursive --force $(PWD)/build/Boilerplate.AppDir/uninstall.sh	
+	rm --recursive --force $(PWD)/build/Boilerplate.AppDir/*.desktop
+	rm --recursive --force $(PWD)/build/Boilerplate.AppDir/*.pdf
 
-	cp $(PWD)/AppDir/*.svg 		$(PWD)/build/Boilerplate.AppDir		| true
-	cp $(PWD)/AppDir/*.png 		$(PWD)/build/Boilerplate.AppDir		| true
-	cp $(PWD)/AppDir/*.xpm 		$(PWD)/build/Boilerplate.AppDir		| true	
-	cp $(PWD)/AppDir/*.desktop 	$(PWD)/build/Boilerplate.AppDir
-	cp $(PWD)/AppDir/AppRun 	$(PWD)/build/Boilerplate.AppDir
+	cp --force $(PWD)/AppDir/*.svg 		$(PWD)/build/Boilerplate.AppDir		|| true
+	cp --force $(PWD)/AppDir/*.png 		$(PWD)/build/Boilerplate.AppDir		|| true
+	cp --force $(PWD)/AppDir/*.xpm 		$(PWD)/build/Boilerplate.AppDir		|| true	
+	cp --force $(PWD)/AppDir/*.desktop 	$(PWD)/build/Boilerplate.AppDir
+	cp --force $(PWD)/AppDir/AppRun 	$(PWD)/build/Boilerplate.AppDir
 
 	chmod +x $(PWD)/build/Boilerplate.AppDir/AppRun
 	chmod +x $(PWD)/build/Boilerplate.AppDir/renoise

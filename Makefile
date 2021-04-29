@@ -14,7 +14,7 @@ PWD:=$(shell pwd)
 
 all:
 	mkdir --parents $(PWD)/build/Boilerplate.AppDir
-	wget --output-document=$(PWD)/build/build.tar.gz https://files.renoise.com/demo/Renoise_3_3_1_Demo_Linux.tar.gz
+	wget --output-document=$(PWD)/build/build.tar.gz https://files.renoise.com/demo/Renoise_3_3_2_Demo_Linux.tar.gz
 	
 	tar -zxvf $(PWD)/build/build.tar.gz -C $(PWD)/build
 
